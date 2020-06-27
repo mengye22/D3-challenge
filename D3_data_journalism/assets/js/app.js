@@ -68,24 +68,24 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
         .attr("text-anchor","middle")
         .attr("fill","white")
         .attr("font-size","12px")
-
-
     
-    // var toolTip = d3.tip()
-    //     .attr("class","tooltip")
-    //     .offset([80,-60])
-    //     .html(function(d) {
-    //         return (`HealthCare:${d.healthcare}<br>Poverty:${d.poverty}`);
-    //     });
+    var toolTip = d3.tip()
+        .attr("class","tooltip")
+        .offset([80,-60])
+        .style("background", "black")
+        .style("color", "white")
+        .html(function(d) {
+            return (`${d.state}:<br>HealthCare:${d.healthcare}<br>Poverty:${d.poverty}`);
+        });
 
-    // chartGroup.call(toolTip);
+    chartGroup.call(toolTip);
 
-    // circlesGroup.on("click", data =>{
-    //     toolTip.show(data,this);
-    // })
-    // .on("mouseout", function(data, index) {
-    //     toolTip.hide(data);
-    //   });
+    circlesGroup.on("mouseover", data =>{
+        toolTip.show(data,this);
+    })
+    .on("mouseout", function(data, index) {
+        toolTip.hide(data);
+      });
 
     chartGroup.append("text")
         .attr("transform","rotate(-90)")
